@@ -1,0 +1,7 @@
+[SETUP]
+type=python
+path=PmbManager.py
+class=PmbManager
+[METHODS]
+backup=adm,admins
+restore=adm,admins

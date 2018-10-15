@@ -1,0 +1,7 @@
+[SETUP]
+type=python
+path=MoodleManager.py
+class=MoodleManager
+[METHODS]
+backup=adm,admins
+restore=adm,admins
