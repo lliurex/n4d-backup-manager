@@ -1,3 +1,9 @@
+n4d-backup-manager (0.0.14) bionic; urgency=medium
+
+  * Initial version for bionic
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Mon, 15 Oct 2018 12:44:29 +0200
+
 n4d-backup-manager (0.0.4) xenial; urgency=high
 
   * Fixing syntax error
