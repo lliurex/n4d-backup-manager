@@ -3,5 +3,5 @@ type=python
 path=PmbManager.py
 class=PmbManager
 [METHODS]
-backup=adm,admins
-restore=adm,admins
+backup=sudo,admins
+restore=sudo,admins

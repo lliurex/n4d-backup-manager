@@ -3,5 +3,5 @@ type=python
 path=MoodleManager.py
 class=MoodleManager
 [METHODS]
-backup=adm,admins
-restore=adm,admins
+backup=sudo,admins
+restore=sudo,admins
