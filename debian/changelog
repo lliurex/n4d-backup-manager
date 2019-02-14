@@ -1,3 +1,9 @@
+n4d-backup-manager (0.0.15) bionic; urgency=medium
+
+  * Adding sudo group
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Thu, 14 Feb 2019 10:10:06 +0100
+
 n4d-backup-manager (0.0.14) bionic; urgency=medium
 
   * Initial version for bionic
