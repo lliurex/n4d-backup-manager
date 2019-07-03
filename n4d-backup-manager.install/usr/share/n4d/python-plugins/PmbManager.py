@@ -48,8 +48,11 @@ class PmbManager:
 			sql='"update pmb.parametres set valeur_param=\'vLlxPandora\' where type_param=\'pmb\' and sstype_param=\'bdd_version\'"'
 			cmd=mysql_command + sql
 			os.system(cmd)
-	
 		elif version=="v5.14":
 			sql='"update pmb.parametres set valeur_param=\'vLlxTrusty\' where type_param=\'pmb\' and sstype_param=\'bdd_version\'"'
+			cmd=mysql_command + sql
+			os.system(cmd)
+		elif version=="v5.19":
+			sql='"update pmb.parametres set valeur_param=\'vLlxXenial\' where type_param=\'pmb\' and sstype_param=\'bdd_version\'"'
 			cmd=mysql_command + sql
 			os.system(cmd)			
