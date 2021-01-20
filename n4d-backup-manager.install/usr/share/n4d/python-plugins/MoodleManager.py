@@ -1,8 +1,9 @@
 import pwd
 import grp
 import os
-import imp
-backupmanager=imp.load_source("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py")
+from importlib.machinery import SourceFileLoader
+backupmanager=SourceFileLoader("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py").load_module()
+import n4d.responses
 
 class MoodleManager:
 	
@@ -20,12 +21,18 @@ class MoodleManager:
 		self.moodle.set_backup_name("MoodleManager")
 		retVal=self.moodle.restore(file_path)
 		self._last_actions('remove')
-		return retVal
+		if retVal[0]:
+			return n4d.responses.build_successful_call_response(retVal[1])
+		else:
+			return n4d.responses.build_failed_call_response(retVal[1])
 
 	def backup(self,dir="/backup"):
-		self.moodle.set_backup_name(get_backup_name("MoodleManager"))
+		self.moodle.set_backup_name("moodle")
 		retVal=self.moodle.backup(dir)
-		return retVal
+		if retVal[0]:
+			return n4d.responses.build_successful_call_response(retVal[1])
+		else:
+			return n4d.responses.build_failed_call_response(retVal[1])
 
 	def _last_actions(self,action):
 		if action=='restore':

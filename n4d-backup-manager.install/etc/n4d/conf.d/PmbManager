@@ -1,7 +1,0 @@
-[SETUP]
-type=python
-path=PmbManager.py
-class=PmbManager
-[METHODS]
-backup=sudo,admins
-restore=sudo,admins

@@ -10,7 +10,7 @@ import shutil
 import os
 import subprocess
 import tarfile
-import time    
+import time  
 
 class BackupManager:
 	def __init__(self,app=''):
@@ -47,6 +47,7 @@ class BackupManager:
 				if app in i:
 					dbConfig=i
 					break
+			
 			if os.path.exists(self.db_configPath+'/'+dbConfig):
 				for line in open(self.db_configPath+'/'+dbConfig):
 					if line.startswith("DB_NAME"):
@@ -54,15 +55,15 @@ class BackupManager:
 						dbName=dbName.rstrip()
 						dbName=dbName.lstrip()
 						break
-				
-                except Exception as e:
-			print e
+		except Exception as e:
+			print(str(e))
 			return [False,str(e)]
-		return dbName
 
+		return dbName
 
 	def backup(self,dir="/backup"):
 		try:
+			ret=self.get_time()
 			file_path=dir+"/"+self.get_time()
 			tar=tarfile.open(file_path,"w:gz")
 			if self.app in self.apps_files:
@@ -81,15 +82,16 @@ class BackupManager:
 					if os.path.exists(dbDumpFile):
 							tar.add(dbDumpFile)
 					else:
-						print "%s database not found!!" % str(self.app)
+						print("%s database not found!!" % str(self.app))
 				else:
-					print "%s database not found!!" % str(self.app)
+					print("%s database not found!!" % str(self.app))
 
 			tar.close()
 			return [True,file_path]
-                except Exception as e:
-			print e
+		except Exception as e:
+			print(str(e))
 			return [False,str(e)]
+
 
 	def restore(self,file_path=None):
 		try:
@@ -101,6 +103,7 @@ class BackupManager:
 
 			if file_path==None:
 				return [False,"Backup file not found"]
+
 			if os.path.exists(file_path):
 				tmp_dir=tempfile.mkdtemp()
 				tar=tarfile.open(file_path)
@@ -136,14 +139,15 @@ class BackupManager:
 						cmd="mysql_upgrade"
 						os.system(cmd)
 					except Exception as e:
-						print e
+						print(str(e))
 
 				self._fix_root_pwd()
 				return [True,""]
 
 		except Exception as e:
-			print e
+			print(str(e))
 			return [False,str(e)]
+
 		#Tmpdir is now ready
 
 	def _fix_root_pwd(self):
@@ -153,12 +157,13 @@ class BackupManager:
 	#_fix_root_pwd
 
 	def existsDb(self,dbName):
+
 		cmd='/usr/sbin/lliurex-sgbd --db_is_present ' + dbName
 		try:
 			sp=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
 			output=sp.communicate()
 			dbExists=str(output[0])
-	 		if dbExists.rstrip() == 'YES':
+			if dbExists.rstrip() == 'YES':
 				dbExists=True
 			else:
 				dbExists=False
@@ -193,15 +198,14 @@ class BackupManager:
 				return path+'/'+ dbName+".sql"
 			else:
 				return ''
-                except Exception as e:
-			print e
-			pass
+		except Exception as e:
+			return ''
 	
 	def restoreDb(self,dbDump_path):
 		try:
 			cmd="mysql -u root -p$(mysql_root_passwd -g) < "+ dbDump_path
 			os.system(cmd)
 		except Exception as e:
-			print e
+			print(str(e))
 			return [False,str(e)]
 	

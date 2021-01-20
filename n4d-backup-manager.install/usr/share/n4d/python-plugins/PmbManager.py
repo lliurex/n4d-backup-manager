@@ -1,7 +1,11 @@
-import imp
+#from importlib.machinery import SourceFileLoader
 import os
 import subprocess
-backupmanager=imp.load_source("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py")
+#backupmanager=SourceFileLoader("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py")
+from importlib.machinery import SourceFileLoader
+backupmanager=SourceFileLoader("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py").load_module()
+import n4d.responses
+
 
 class PmbManager:
 	
@@ -17,14 +21,20 @@ class PmbManager:
 		self.pmb.set_backup_name("PmbManager")
 		retVal=self.pmb.restore(file_path)
 		self.change_pmb_version()
-		return retVal
+		if retVal[0]:
+			return n4d.responses.build_successful_call_response(retVal[1])
+		else:
+			return n4d.responses.build_failed_call_response(retVal[1])
 
 
 	def backup(self,dir='/backup'):
-		self.pmb.set_backup_name(get_backup_name("PmbManager"))
+		self.pmb.set_backup_name("pmb")
 		retVal=self.pmb.backup(dir)
 		self.last_operations()
-		return retVal
+		if retVal[0]:
+			return n4d.responses.build_successful_call_response(retVal[1])
+		else:
+			return n4d.responses.build_failed_call_response(retVal[1])
 
 	def last_operations(self):
 		#Regenerate cnames 

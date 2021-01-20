@@ -1,0 +1,22 @@
+{
+    "SETUP": {
+        "type": "python",
+        "path": "PmbManager.py",
+        "class": "PmbManager"
+    },
+    "METHODS": {
+        "restore": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        },
+        "backup": {
+            "allowed_groups": [
+                "sudo",
+                "admins"
+            ]
+        }
+ 
+    }
+}
