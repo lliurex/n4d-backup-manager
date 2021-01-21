@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 ##################################################
 #In order to add a backup:
 # - Instatiate backupmanager class
@@ -199,6 +201,7 @@ class BackupManager:
 			else:
 				return ''
 		except Exception as e:
+			print(str(e))
 			return ''
 	
 	def restoreDb(self,dbDump_path):

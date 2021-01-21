@@ -1,7 +1,6 @@
-#from importlib.machinery import SourceFileLoader
+#!/usr/bin/python3
 import os
 import subprocess
-#backupmanager=SourceFileLoader("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py")
 from importlib.machinery import SourceFileLoader
 backupmanager=SourceFileLoader("BackupManager","/usr/share/n4d/python-plugins/support/BackupManager.py").load_module()
 import n4d.responses
