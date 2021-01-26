@@ -21,9 +21,9 @@ class PmbManager:
 		retVal=self.pmb.restore(file_path)
 		self.change_pmb_version()
 		if retVal[0]:
-			return n4d.responses.build_successful_call_response(retVal[1])
+			return n4d.responses.build_successful_call_response()
 		else:
-			return n4d.responses.build_failed_call_response(retVal[1])
+			return n4d.responses.build_failed_call_response('',retVal[1])
 
 
 	def backup(self,dir='/backup'):
@@ -33,7 +33,7 @@ class PmbManager:
 		if retVal[0]:
 			return n4d.responses.build_successful_call_response(retVal[1])
 		else:
-			return n4d.responses.build_failed_call_response(retVal[1])
+			return n4d.responses.build_failed_call_response('',retVal[1])
 
 	def last_operations(self):
 		#Regenerate cnames 

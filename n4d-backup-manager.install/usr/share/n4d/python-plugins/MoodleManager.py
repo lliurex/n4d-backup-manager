@@ -24,9 +24,9 @@ class MoodleManager:
 		retVal=self.moodle.restore(file_path)
 		self._last_actions('remove')
 		if retVal[0]:
-			return n4d.responses.build_successful_call_response(retVal[1])
+			return n4d.responses.build_successful_call_response()
 		else:
-			return n4d.responses.build_failed_call_response(retVal[1])
+			return n4d.responses.build_failed_call_response('',retVal[1])
 
 	def backup(self,dir="/backup"):
 		self.moodle.set_backup_name("moodle")
@@ -34,7 +34,7 @@ class MoodleManager:
 		if retVal[0]:
 			return n4d.responses.build_successful_call_response(retVal[1])
 		else:
-			return n4d.responses.build_failed_call_response(retVal[1])
+			return n4d.responses.build_failed_call_response('',retVal[1])
 
 	def _last_actions(self,action):
 		if action=='restore':
