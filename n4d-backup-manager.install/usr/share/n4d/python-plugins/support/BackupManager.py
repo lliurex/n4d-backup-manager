@@ -163,8 +163,12 @@ class BackupManager:
 		cmd='/usr/sbin/lliurex-sgbd --db_is_present ' + dbName
 		try:
 			sp=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-			output=sp.communicate()
-			dbExists=str(output[0])
+			output=sp.communicate()[0]
+
+			if type(output) is bytes:
+				output=output.decode()
+		
+			dbExists=str(output)
 			if dbExists.rstrip() == 'YES':
 				dbExists=True
 			else:
