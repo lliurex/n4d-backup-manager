@@ -1,3 +1,9 @@
+n4d-backup-manager (0.1.18) focal; urgency=medium
+
+  * Fixed backup functions
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 11 May 2021 08:32:21 +0200
+
 n4d-backup-manager (0.1.17) focal; urgency=medium
 
   * Fixed postinst
