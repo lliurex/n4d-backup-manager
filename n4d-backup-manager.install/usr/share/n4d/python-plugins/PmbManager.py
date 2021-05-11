@@ -27,8 +27,8 @@ class PmbManager:
 
 
 	def backup(self,dir='/backup'):
-		self.pmb.set_backup_name("pmb")
-		retVal=self.pmb.backup(dir)
+		#self.pmb.set_backup_name("pmb")
+		retVal=self.pmb.backup("PmbManager",dir)
 		self.last_operations()
 		if retVal[0]:
 			return n4d.responses.build_successful_call_response(retVal[1])

@@ -12,7 +12,8 @@ import shutil
 import os
 import subprocess
 import tarfile
-import time  
+import time
+import n4d.utils  
 
 class BackupManager:
 	def __init__(self,app=''):
@@ -37,8 +38,8 @@ class BackupManager:
 		self.backupName=backupName
 		return self.backupName
 
-	def get_time(self):
-		return self.backupName
+	def get_time(self,backupName):
+		return n4d.utils.get_backup_name(backupName)
 
 	def get_db_name(self,app):
 		try:
@@ -63,10 +64,10 @@ class BackupManager:
 
 		return dbName
 
-	def backup(self,dir="/backup"):
+	def backup(self,backupName,dir="/backup"):
 		try:
-			ret=self.get_time()
-			file_path=dir+"/"+self.get_time()
+			ret=self.get_time(backupName)
+			file_path=dir+"/"+ret
 			tar=tarfile.open(file_path,"w:gz")
 			if self.app in self.apps_files:
 				for f in list(self.apps_files[self.app]):
@@ -163,8 +164,12 @@ class BackupManager:
 		cmd='/usr/sbin/lliurex-sgbd --db_is_present ' + dbName
 		try:
 			sp=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-			output=sp.communicate()
-			dbExists=str(output[0])
+			output=sp.communicate()[0]
+
+			if type(output) is bytes:
+				output=output.decode()
+		
+			dbExists=str(output)
 			if dbExists.rstrip() == 'YES':
 				dbExists=True
 			else:

@@ -29,8 +29,8 @@ class MoodleManager:
 			return n4d.responses.build_failed_call_response('',retVal[1])
 
 	def backup(self,dir="/backup"):
-		self.moodle.set_backup_name("moodle")
-		retVal=self.moodle.backup(dir)
+		#self.moodle.set_backup_name("moodle")
+		retVal=self.moodle.backup("MoodleManager",dir)
 		if retVal[0]:
 			return n4d.responses.build_successful_call_response(retVal[1])
 		else:
