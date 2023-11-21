@@ -1,3 +1,9 @@
+n4d-backup-manager (0.11.18) jammy; urgency=medium
+
+  * Initial release for Jammy
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 21 Nov 2023 13:50:59 +0100
+
 n4d-backup-manager (0.1.18) focal; urgency=medium
 
   * Fixed backup functions
